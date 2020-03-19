@@ -7,29 +7,40 @@ import { Link } from "gatsby"
 export default () => (
     <Layout>
         <Container>
-            <Title>Welcome to Corona Support</Title>
+            <Title>Welkom bij Corona Support</Title>
             <Text>
-                This website is for restaurants, local suppliers, artists,
-                cinemas and other businesses that need our help. It hopes to
-                provide a comprehensive list of current initiatives and to
-                become a collective space for information.
+                Deze website is voor restaurants, lokale producenten, artiesten,
+                bioscopen, theaters, hotels. Kortom, alle ondernemingen en
+                bedrijven die onze hulp nodig hebben. Het doel is om een
+                uitgebreide lijst samen te stellen met opgezette initiatieven,
+                een een colllectieve plek te worden voor informatie, en elkaar
+                te verbinden.
             </Text>
             <Text>
-                For now it's just a{" "}
-                <a href="https://drive.google.com/open?id=1RLU2PRxenq_UxPaoq59jzsK59FxtsS8w">
-                    PDF
+                Voor nu is het simpelweg een{" "}
+                <a
+                    target="_blank"
+                    rel="noopener"
+                    href="https://drive.google.com/open?id=1RLU2PRxenq_UxPaoq59jzsK59FxtsS8w"
+                >
+                    PDF (Nederlands, Engels)
                 </a>{" "}
-                with information about known initiatives, but there are plans to
-                improve the website.
+                met informatie over bekende initiatieven.
             </Text>
             <Text>
-                If you know a restaurant, a local supplier, a favourite café or
-                a band that needs support and you want them to be featured on
-                this website, please go to the{" "}
-                <Link to="/contribute">contribute page</Link> and fill in the
-                form. We will then update the PDF.
+                Heb jij of ken jij een restaurant of filmtheater die steun nodig
+                heeft? Of heb je een favoriet café dat uit de brand geholpen
+                moet worden? Wil je graag dat het op de website komt? Vul dan{" "}
+                <a
+                    target="_blank"
+                    rel="noopener"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSfGtCtLGVmxEA_FyMWESmDseFl4nRS56_-58rNrNKGAat3TZw/viewform"
+                >
+                    hier
+                </a>{" "}
+                het formulier in.
             </Text>
-            <Text>Thank you for your support!</Text>
+            <Text>Bedankt voor je steun!</Text>
         </Container>
     </Layout>
 )

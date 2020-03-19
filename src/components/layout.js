@@ -35,7 +35,6 @@ export default ({ children }) => (
             </Link>
             <Navigation>
                 <ListLink to="/">Home</ListLink>
-                <ListLink to="/contribute">Contribute</ListLink>
             </Navigation>
         </Header>
         {children}
