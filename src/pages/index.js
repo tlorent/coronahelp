@@ -32,7 +32,7 @@ export default ({ data }) => {
                         </FormLink>{" "}
                         het formulier in.
                     </Text>
-                    <Text>Bedankt voor je steun!</Text>
+                    <Text>Bedankt voor de steun!</Text>
                 </Container>
             </Intro>
 
