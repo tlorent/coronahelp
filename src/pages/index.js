@@ -56,7 +56,7 @@ export default ({ data }) => {
                                 {node.frontmatter.title}
                             </BusinessLink>
                         </h3>
-                        <Text>{node.excerpt}</Text>
+                        <Text>{node.frontmatter.description}</Text>
                     </div>
                 ))}
             </Businesses>
@@ -78,7 +78,6 @@ const StyledTitle = styled.h1`
 const Intro = styled.section`
     position: relative;
     color: #fff;
-    /* padding: 1rem; */
 
     ::before {
         background: url("https://images.unsplash.com/photo-1569437061241-a848be43cc82?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80")
@@ -145,8 +144,8 @@ export const query = graphql`
                     frontmatter {
                         title
                         url
+                        description
                     }
-                    excerpt
                 }
             }
         }
