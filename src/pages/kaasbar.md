@@ -5,4 +5,6 @@ location: "Amsterdam"
 description: "Kaasbar Amsterdam biedt 20 verschillende Nederlandse kazen met
 unieke en uitgebalanceerde pairings. Ook zij bieden nu thuisbezorging aan: een pakket
 met lekkere kazen, toast, worst en bier."
+category: "Restaurant/Café"
+image: "https://www.culy.nl/wp-content/uploads/2020/02/7_kaasbar-amsterdam.jpg"
 ---

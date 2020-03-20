@@ -5,6 +5,7 @@ import { Link } from "gatsby"
 const GlobalStyle = createGlobalStyle`
     body {
         border-top: 10px solid #F2AC30;
+        box-sizing: border-box;
     }
 
     a {

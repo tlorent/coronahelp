@@ -3,6 +3,8 @@ import Title from "../components/title"
 import Layout from "../components/layout"
 import styled from "styled-components"
 import { graphql } from "gatsby"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons"
 
 export default ({ data }) => {
     return (
@@ -43,29 +45,39 @@ export default ({ data }) => {
                         {data.allMarkdownRemark.totalCount} ondernemingen
                     </span>
                 </Text>
-                {data.allMarkdownRemark.edges.map(({ node }) => (
-                    <div key={node.id}>
-                        <h3
-                            style={{
-                                borderBottom: "4px solid #f2ac30",
-                                width: "fit-content",
-                                paddingBottom: "4px",
-                            }}
-                        >
-                            <BusinessLink href={node.frontmatter.url}>
-                                {node.frontmatter.title}
-                            </BusinessLink>
-                        </h3>
-                        <Text>{node.frontmatter.description}</Text>
-                    </div>
-                ))}
+                <BusinessGrid>
+                    {data.allMarkdownRemark.edges.map(({ node }) => (
+                        <>
+                            <Business key={node.id}>
+                                <BusinessImage src={node.frontmatter.image} />
+                                <BusinessName
+                                    style={{
+                                        borderBottom: "4px solid #f2ac30",
+                                        width: "fit-content",
+                                        paddingBottom: "4px",
+                                    }}
+                                >
+                                    <BusinessLink href={node.frontmatter.url}>
+                                        {node.frontmatter.title}
+                                    </BusinessLink>
+                                </BusinessName>
+                                <Location>
+                                    <FontAwesomeIcon icon={faMapMarkerAlt} />{" "}
+                                    {node.frontmatter.location} |{" "}
+                                    {node.frontmatter.category}
+                                </Location>
+                                <Text>{node.frontmatter.description}</Text>
+                            </Business>
+                        </>
+                    ))}
+                </BusinessGrid>
             </Businesses>
         </Layout>
     )
 }
 
 const Container = styled.div`
-    max-width: 40rem;
+    max-width: 60rem;
     margin: 0 auto;
     padding: 1rem;
 `
@@ -109,24 +121,64 @@ const Intro = styled.section`
 `
 
 const Businesses = styled.section`
-    max-width: 40rem;
+    max-width: 60rem;
     margin: 0 auto;
     padding: 1rem;
 `
 
+const BusinessGrid = styled.div`
+    display: grid;
+    grid-template-columns: repeat(1);
+    grid-column-gap: 5rem;
+
+    @media (min-width: 688px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+`
+
+const Business = styled.div``
+
+const BusinessImage = styled.img`
+    border-radius: 4px;
+    width: 100%;
+    margin: 0;
+
+    @media (min-width: 688px) {
+        /* min-height: 164px;
+        max-height: 165px; */
+    }
+`
+
+const BusinessName = styled.h3`
+    margin-top: 0.6rem;
+    font-size: 20px;
+`
+
 const BusinessLink = styled.a`
     color: #f2ac30;
-`;
+`
 
 const FormLink = styled.a`
     color: #fff;
     border-bottom: 3px solid #fff;
-`;
+`
 
 const Text = styled.p`
+    font-size: 0.9rem;
+
     > span {
         font-style: italic;
     }
+`
+
+const Location = styled.p`
+    font-size: 16px;
+    margin-bottom: 0.4rem;
+    color: #bcc3ce;
 `
 
 export const query = graphql`
@@ -145,6 +197,8 @@ export const query = graphql`
                         title
                         url
                         description
+                        location
+                        category
                     }
                 }
             }
