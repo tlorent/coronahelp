@@ -3,4 +3,6 @@ import styled from "styled-components"
 
 export default ({ children }) => <Inner>{children}</Inner>
 
-const Inner = styled.h1``
+const Inner = styled.h1`
+    margin-bottom: 1.6rem;
+`
