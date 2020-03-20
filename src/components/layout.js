@@ -17,14 +17,6 @@ const GlobalStyle = createGlobalStyle`
     }
 `
 
-// const ListLink = ({ to, children }) => (
-//     <li>
-//         <StyledLink to={to} activeStyle={{ color: "#F2AC30" }}>
-//             {children}
-//         </StyledLink>
-//     </li>
-// )
-
 export default ({ children }) => (
     <>
         <GlobalStyle />
@@ -75,18 +67,6 @@ const Navigation = styled.ul`
     list-style: none;
     display: flex;
     margin-bottom: 8px;
-`
-
-const StyledLink = styled(Link)`
-    margin-right: 1rem;
-    background-image: none;
-
-    color: #000;
-    transition: color 0.3s ease;
-
-    :hover {
-        color: #f2ac30;
-    }
 `
 
 const Button = styled.button`
