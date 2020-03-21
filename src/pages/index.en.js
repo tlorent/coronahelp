@@ -1,41 +1,40 @@
 import React from "react"
 import Layout from "../components/layout"
+import Introduction from "../components/introduction"
 import styled from "styled-components"
 import { graphql } from "gatsby"
-import Introduction from "../components/introduction"
 import Businesses from "../components/businesses"
 import Section from "../components/section"
 
 export default ({ data }) => {
     return (
-        <Layout>
+        <Layout inEnglish>
             <Introduction>
                 <Text>
-                    Deze website is voor restaurants, lokale producenten,
-                    artiesten, bioscopen, theaters, hotels. Kortom, alle
-                    ondernemingen en bedrijven die onze hulp nodig hebben. Het
-                    doel is om een uitgebreide lijst samen te stellen met
-                    opgezette initiatieven, een een collectieve plek te worden
-                    voor informatie, en elkaar te verbinden.
+                    This website is for restaurants, local producers, artists,
+                    cinemas, theaters, hotels. Basically all businesses that now
+                    need our help. It provides a comprehensive list of known
+                    initiatives, a collective space for information, and a place
+                    to connect with each other.
                 </Text>
                 <Text>
-                    Heb jij of ken jij een restaurant of filmtheater die steun
-                    nodig heeft? Of heb je een favoriet café dat uit de brand
-                    geholpen moet worden? Vul dan{" "}
+                    Do you have or know a restaurant or cinema that needs
+                    support? Or do you have a favourite café that you want to
+                    help out? Then fill out{" "}
                     <FormLink
                         target="_blank"
                         rel="noopener noreferrer"
                         href="https://docs.google.com/forms/d/e/1FAIpQLSfGtCtLGVmxEA_FyMWESmDseFl4nRS56_-58rNrNKGAat3TZw/viewform"
                     >
-                        <span>hier</span>
-                    </FormLink>{" "}
-                    het formulier in.
+                        <span>this form</span>
+                    </FormLink>
+                    .
                 </Text>
-                <Text>Bedankt voor de steun!</Text>
+                <Text>Thanks for the support!</Text>
             </Introduction>
 
             <Section>
-                <Businesses data={data} />
+                <Businesses data={data} inEnglish />
             </Section>
         </Layout>
     )
@@ -64,9 +63,9 @@ export const query = graphql`
                     frontmatter {
                         title
                         url
-                        descriptionNL
-                        locationNL
-                        categoryNL
+                        descriptionEN
+                        locationEN
+                        categoryEN
                     }
                 }
             }

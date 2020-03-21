@@ -6,7 +6,7 @@
 
 module.exports = {
     siteMetadata: {
-        title: 'Local Corona Support'
+        title: "Local Corona Support",
     },
     plugins: [
         `gatsby-plugin-styled-components`,
@@ -16,12 +16,19 @@ module.exports = {
             options: {
                 name: `src`,
                 path: `${__dirname}/src/`,
-            }
+            },
         },
         {
             resolve: `gatsby-plugin-typography`,
             options: {
                 pathToConfigModule: `src/utils/typography`,
+            },
+        },
+        {
+            resolve: "gatsby-plugin-i18n",
+            options: {
+                langKeyDefault: "nl",
+                useLangKeyLayout: false,
             },
         },
     ],

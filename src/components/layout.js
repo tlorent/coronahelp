@@ -18,26 +18,31 @@ const GlobalStyle = createGlobalStyle`
     }
 `
 
-export default ({ children }) => (
+const ListLink = ({ to, children }) => (
+    <li>
+        <StyledLink to={to} activeStyle={{ color: "#000", borderBottom: '1px solid #000' }}>
+            {children}
+        </StyledLink>
+    </li>
+)
+
+export default ({ children, inEnglish }) => (
     <>
         <GlobalStyle />
         <Header>
-            <Link
-                to="/"
-                style={{ textShadow: "none", backgroundImage: "none" }}
-            >
-                <HeaderLink style={{ display: "inline" }}>
-                    CORONA SUPPORT
-                </HeaderLink>
-            </Link>
+            <HeaderLink>
+                CORONA SUPPORT
+            </HeaderLink>
             <Navigation>
+                <ListLink to="/">NL</ListLink>
+                <ListLink to="/en">EN</ListLink>
                 <Button>
                     <a
                         target="_blank"
                         rel="noopener noreferrer"
                         href="https://docs.google.com/forms/d/e/1FAIpQLSfGtCtLGVmxEA_FyMWESmDseFl4nRS56_-58rNrNKGAat3TZw/viewform"
                     >
-                        Doe mee!
+                        {inEnglish ? 'Participate!' : 'Doe mee!'}
                     </a>{" "}
                 </Button>
             </Navigation>
@@ -62,6 +67,8 @@ const HeaderLink = styled.h4`
     color: #f2ac30;
     border-bottom: 4px solid #f2ac30;
     padding-bottom: 3px;
+    margin-top: 0;
+    display: inline-block;
 `
 
 const Navigation = styled.ul`
@@ -76,9 +83,20 @@ const Button = styled.button`
     background: #f2ac30;
     color: #fff;
     padding: 8px 16px;
-    transform: translateY(-4px);
+    transform: translateY(-8px);
 
     > a {
         color: #fff;
+    }
+`
+
+const StyledLink = styled(Link)`
+    margin-right: 1rem;
+    background-image: none;
+    color: #f2ac30;
+    transition: color 0.3s ease;
+
+    :hover {
+        color: #000;
     }
 `
