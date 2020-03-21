@@ -95,6 +95,7 @@ const Intro = styled.section`
         background: url("https://images.unsplash.com/photo-1569437061241-a848be43cc82?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80")
             no-repeat center center;
         background-size: cover;
+        background-attachment: fixed;
         position: absolute;
         content: "";
         top: 0;
@@ -109,6 +110,7 @@ const Intro = styled.section`
         opacity: 0.9;
         background: #f2ac30;
         background-size: cover;
+        background-attachment: fixed;
         position: absolute;
         content: "";
         top: 0;
