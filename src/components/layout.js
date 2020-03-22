@@ -67,19 +67,6 @@ const Navigation = styled.ul`
     margin-bottom: 8px;
 `
 
-const Button = styled.button`
-    border-radius: 8px;
-    border: none;
-    background: #f2ac30;
-    color: #fff;
-    padding: 8px 16px;
-    transform: translateY(-8px);
-
-    > a {
-        color: #fff;
-    }
-`
-
 const StyledLink = styled(Link)`
     margin-right: 1rem;
     background-image: none;
