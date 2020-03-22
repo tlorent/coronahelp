@@ -26,25 +26,16 @@ const ListLink = ({ to, children }) => (
     </li>
 )
 
-export default ({ children, inEnglish }) => (
+export default ({ children }) => (
     <>
         <GlobalStyle />
         <Header>
-            <HeaderLink>
+            <HeaderTitle>
                 CORONA SUPPORT
-            </HeaderLink>
+            </HeaderTitle>
             <Navigation>
                 <ListLink to="/">NL</ListLink>
                 <ListLink to="/en">EN</ListLink>
-                <Button>
-                    <a
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href="https://docs.google.com/forms/d/e/1FAIpQLSfGtCtLGVmxEA_FyMWESmDseFl4nRS56_-58rNrNKGAat3TZw/viewform"
-                    >
-                        {inEnglish ? 'Participate!' : 'Doe mee!'}
-                    </a>{" "}
-                </Button>
             </Navigation>
         </Header>
         {children}
@@ -63,12 +54,11 @@ const Header = styled.header`
     background: #fff;
 `
 
-const HeaderLink = styled.h4`
+const HeaderTitle = styled.h4`
     color: #f2ac30;
-    border-bottom: 4px solid #f2ac30;
-    padding-bottom: 3px;
     margin-top: 0;
     display: inline-block;
+    transform: translateY(6px);
 `
 
 const Navigation = styled.ul`
