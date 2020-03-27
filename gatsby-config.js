@@ -12,6 +12,15 @@ module.exports = {
         `gatsby-plugin-styled-components`,
         `gatsby-transformer-remark`,
         {
+            resolve: `gatsby-plugin-manifest`,
+            options: {
+                name: `Local Corona Support`,
+                short_name: `Local Corona Support`,
+                start_url: `/`,
+                icon: `src/static/images/icon.png`
+            },
+        },
+        {
             resolve: `gatsby-source-filesystem`,
             options: {
                 name: `src`,

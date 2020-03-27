@@ -1,6 +1,7 @@
 import React from "react"
 import styled, { createGlobalStyle } from "styled-components"
 import { Link } from "gatsby"
+import logo from '../static/images/logo.png'
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -30,9 +31,7 @@ export default ({ children }) => (
     <>
         <GlobalStyle />
         <Header>
-            <HeaderTitle>
-                CORONA SUPPORT
-            </HeaderTitle>
+            <Logo src={logo} alt="Local Corona Support logo" />
             <Navigation>
                 <ListLink to="/">NL</ListLink>
                 <ListLink to="/en">EN</ListLink>
@@ -45,6 +44,7 @@ export default ({ children }) => (
 const Header = styled.header`
     display: flex;
     justify-content: space-between;
+    align-items: center;
     box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.1);
     padding: 1rem;
     padding-bottom: 0;
@@ -52,13 +52,6 @@ const Header = styled.header`
     top: 0;
     z-index: 2;
     background: #fff;
-`
-
-const HeaderTitle = styled.h4`
-    color: #f2ac30;
-    margin-top: 0;
-    display: inline-block;
-    transform: translateY(6px);
 `
 
 const Navigation = styled.ul`
@@ -77,3 +70,10 @@ const StyledLink = styled(Link)`
         color: #000;
     }
 `
+
+const Logo = styled.img`
+    width: 100px;
+    margin: 0;
+    padding: 0;
+    transform: translateY(-8px);
+`;

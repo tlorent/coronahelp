@@ -18,7 +18,7 @@ export default ({ inEnglish, data }) => (
                 <>
                     <Business key={node.id}>
                         <BusinessName>
-                            <BusinessLink href={node.frontmatter.url}>
+                            <BusinessLink href={node.frontmatter.url} rel="noreferrer" target="_blank">
                                 {node.frontmatter.title}
                             </BusinessLink>
                         </BusinessName>
