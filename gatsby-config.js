@@ -12,12 +12,19 @@ module.exports = {
         `gatsby-plugin-styled-components`,
         `gatsby-transformer-remark`,
         {
+            resolve: `gatsby-plugin-google-analytics`,
+            options: {
+                trackingId: "UA-162115873-1",
+                head: true
+            },
+        },
+        {
             resolve: `gatsby-plugin-manifest`,
             options: {
                 name: `Local Corona Support`,
                 short_name: `Local Corona Support`,
                 start_url: `/`,
-                icon: `src/static/images/icon.png`
+                icon: `src/static/images/icon.png`,
             },
         },
         {
