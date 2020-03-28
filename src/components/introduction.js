@@ -34,8 +34,6 @@ const Intro = styled.section`
     ::after {
         opacity: 0.8;
         background: #f2ac30;
-        background-size: cover;
-        background-attachment: fixed;
         position: absolute;
         content: "";
         top: 0;

@@ -6,7 +6,7 @@ import Introduction from "../components/introduction"
 import Businesses from "../components/businesses"
 import Section from "../components/section"
 import { Helmet } from "react-helmet"
-import Town from "../components/svg/town"
+import ConferenceSvg from "../components/svg/Conference"
 
 export default ({ data }) => {
     return (
@@ -42,7 +42,7 @@ export default ({ data }) => {
                             </Button>
                         </div>
                     </Text>
-                    <Town />
+                    <ConferenceSvg />
                 </Container>
             </Introduction>
 

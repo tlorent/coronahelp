@@ -6,7 +6,7 @@ import { graphql } from "gatsby"
 import Businesses from "../components/businesses"
 import { Helmet } from "react-helmet"
 import Section from "../components/section"
-import Town from "../components/svg/town"
+import ConferenceSVG from "../components/svg/Conference"
 
 export default ({ data }) => {
     return (
@@ -42,7 +42,7 @@ export default ({ data }) => {
                             </Button>
                         </div>
                     </Text>
-                    <Town />
+                    <ConferenceSVG />
                 </Container>
             </Introduction>
 
