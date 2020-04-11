@@ -10,7 +10,7 @@ import ConferenceSVG from "../components/svg/Conference"
 
 export default ({ data }) => {
     return (
-        <Layout>
+        <Layout inEnglish>
             <Helmet>
                 <meta charSet="utf-8" />
                 <meta
@@ -30,23 +30,22 @@ export default ({ data }) => {
                         Do you have or know a restaurant or cinema that needs
                         support? Or do you have a favourite café that you want
                         to help out?
-                        <div>
-                            <Button>
-                                <a
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    href="https://docs.google.com/forms/d/e/1FAIpQLSfGtCtLGVmxEA_FyMWESmDseFl4nRS56_-58rNrNKGAat3TZw/viewform"
-                                >
-                                    <span>Sign a business up!</span>
-                                </a>{" "}
-                            </Button>
-                        </div>
+                        <br />
+                        <Button>
+                            <a
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                href="https://docs.google.com/forms/d/e/1FAIpQLSfGtCtLGVmxEA_FyMWESmDseFl4nRS56_-58rNrNKGAat3TZw/viewform"
+                            >
+                                <span>Sign a business up!</span>
+                            </a>{" "}
+                        </Button>
                     </Text>
                     <ConferenceSVG />
                 </Container>
             </Introduction>
 
-            <Section>
+            <Section name="businesses">
                 <Businesses data={data} inEnglish />
             </Section>
         </Layout>

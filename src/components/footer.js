@@ -18,7 +18,7 @@ export default () => {
 const Footer = styled.footer`
     padding: 1rem;
     background: #f2ac30;
-    margin-top: 3rem;
+    /* margin-top: 3rem; */
     box-shadow: 0 -5px 15px 0px rgba(0, 0, 0, 0.1);
 `
 

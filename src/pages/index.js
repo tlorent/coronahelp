@@ -30,23 +30,22 @@ export default ({ data }) => {
                         Heb jij of ken jij een restaurant of filmtheater die
                         steun nodig heeft? Of heb je een favoriet café dat uit
                         de brand geholpen moet worden?
-                        <div>
-                            <Button>
-                                <a
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    href="https://docs.google.com/forms/d/e/1FAIpQLSfGtCtLGVmxEA_FyMWESmDseFl4nRS56_-58rNrNKGAat3TZw/viewform"
-                                >
-                                    <span>Geef een onderneming op!</span>
-                                </a>{" "}
-                            </Button>
-                        </div>
+                        <br />
+                        <Button>
+                            <a
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                href="https://docs.google.com/forms/d/e/1FAIpQLSfGtCtLGVmxEA_FyMWESmDseFl4nRS56_-58rNrNKGAat3TZw/viewform"
+                            >
+                                <span>Geef een onderneming op!</span>
+                            </a>{" "}
+                        </Button>
                     </Text>
                     <ConferenceSvg />
                 </Container>
             </Introduction>
 
-            <Section>
+            <Section name="businesses">
                 <Businesses data={data} />
             </Section>
         </Layout>
