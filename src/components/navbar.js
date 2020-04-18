@@ -3,8 +3,6 @@ import styled from "styled-components"
 import { Link } from "gatsby"
 import { Link as ScrollLink, animateScroll as scroll } from "react-scroll"
 import logo from "../static/images/logo.png"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons"
 
 const ListLink = ({ to, children }) => (
     <li>
@@ -49,23 +47,22 @@ export default ({ inEnglish }) => {
                     alt="Local Corona Support logo"
                     onClick={() => scroll.scrollToTop()}
                 />
-                <Items open={open}>
-                    <ScrollToLink to="businesses">
-                        {inEnglish ? "Businesses" : "Ondernemingen"}
-                    </ScrollToLink>
-                    <ListLink to="/">NL</ListLink>
-                    <ListLink to="/en">EN</ListLink>
+                <Items>
+                    <NavItems open={open}>
+                        <ScrollToLink to="businesses">
+                            {inEnglish ? "Businesses" : "Ondernemingen"}
+                        </ScrollToLink>
+                        <Languages open={open}>
+                            <ListLink to="/">NL</ListLink>
+                            {" - "}
+                            <ListLink to="/en">EN</ListLink>
+                        </Languages>
+                    </NavItems>
+
+                    <MobileMenu onClick={() => setOpen(!open)}>
+                        <Hamburger open={open} />
+                    </MobileMenu>
                 </Items>
-                <HamburgerIcon
-                    icon={faBars}
-                    onClick={() => setOpen(!open)}
-                    open={open}
-                />
-                <CloseIcon
-                    icon={faTimes}
-                    onClick={() => setOpen(!open)}
-                    open={open}
-                />
             </Content>
         </Navigation>
     )
@@ -78,7 +75,7 @@ const Navigation = styled.nav`
     position: sticky;
     top: 0;
     z-index: 2;
-    background: #fff;
+    background-color: #fff;
 
     transition: min-height 0.6s ease;
     min-height: ${({ open }) => (open ? "100vh" : "4rem")};
@@ -96,37 +93,43 @@ const Content = styled.div`
     align-items: center;
 `
 
-const Items = styled.ul`
+const Items = styled.div`
+    display: flex;
+    justify-content: space-between;
+`
+
+const NavItems = styled.ul`
     cursor: pointer;
     list-style: none;
     margin: 0;
     margin-bottom: 8px;
-    justify-content: space-between;
-    flex-direction: column;
-    text-align: center;
+    display: flex;
+    flex-direction: row;
 
-    position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+    ${({ open }) =>
+        open &&
+        `
+        justify-content: space-between;
+        flex-direction: column;
+        text-align: center;
+        font-size: 1.5rem;
 
-    /* opacity: ${({ open }) => (open ? "1" : "0")}; */
-    display: ${({ open }) => (open ? "block" : "none")};
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
 
-    @media (min-width: 768px) {
-        flex-direction: row;
-        transform: translate(0);
-        position: static;
-        /* opacity: 1; */
-        display: flex;
-    }
+        @media (min-width: 768px) {
+            font-size: 2rem;
+        }
+    `}
 `
 
 const StyledLink = styled(Link)`
     background-image: none;
     color: #f2ac30;
     transition: color 0.3s ease;
-    margin-left: 1rem;
+    margin: 0 0.3rem;
 
     :hover {
         color: #000;
@@ -157,26 +160,76 @@ const Logo = styled.img`
     }
 `
 
-const HamburgerIcon = styled(FontAwesomeIcon)`
-    display: block;
-    transform: translateY(-8px);
+const Languages = styled.div`
+    justify-content: center;
+    display: ${({ open }) => (open ? "flex" : "none")};
+`
 
-    display: ${({ open }) => (open ? "none" : "block")};
+const Hamburger = styled.span`
+    width: 1rem;
+    background-color: #fff;
+    height: ${({ open }) => (open ? "0" : "2px")};
 
-    @media (min-width: 768px) {
-        display: none;
-        transform: translate(16px, -8px);
+    position: relative;
+
+    :before {
+        background-color: #fff;
+        content: "";
+        height: 2px;
+        width: 1rem;
+        position: absolute;
+        top: -6px;
+        left: 0;
+
+        transition: top 0.2s ease, transform 0.2s ease;
+
+        ${({ open }) =>
+            open &&
+            `
+            top: -2px;
+            transform: rotate(135deg);
+        `}
+    }
+
+    :after {
+        background-color: #fff;
+        content: "";
+        height: 2px;
+        width: 1rem;
+        position: absolute;
+        bottom: -6px;
+        left: 0;
+
+        transition: bottom 0.2s ease, transform 0.2s ease;
+
+        ${({ open }) =>
+            open &&
+            `
+            transform: rotate(-135deg);
+            bottom: 0;
+        `}
     }
 `
 
-const CloseIcon = styled(FontAwesomeIcon)`
-    display: block;
+const MobileMenu = styled.div`
+    background-color: #000;
+    border-radius: 50%;
+    width: 2.3rem;
+    height: 2.3rem;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-left: 0.8rem;
+
     transform: translateY(-8px);
 
-    display: ${({ open }) => (open ? "block" : "none")};
+    transition: background-color 0.2s ease-in .1s, border-radius 0.2s ease-in .1s;
 
-    @media (min-width: 768px) {
-        display: none;
-        transform: translate(16px, -8px);
+    :hover {
+        background-color: #f2ac30;
+        border-radius: initial;
     }
 `
