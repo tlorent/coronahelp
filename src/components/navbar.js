@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { Link } from "gatsby"
 import { Link as ScrollLink, animateScroll as scroll } from "react-scroll"
 import logo from "../static/images/logo.png"
+import { useOnScroll } from '../hooks/useOnScroll'
 
 const ListLink = ({ to, children }) => (
     <li>
@@ -38,9 +39,10 @@ const ScrollToLink = ({ to, children }) => {
 
 export default ({ inEnglish }) => {
     const [open, setOpen] = useState(false)
+    const isVisible = useOnScroll(open)
 
     return (
-        <Navigation open={open}>
+        <Navigation open={open} isVisible={isVisible}>
             <Content>
                 <Logo
                     src={logo}
@@ -73,11 +75,11 @@ const Navigation = styled.nav`
     padding: 1rem;
     padding-bottom: 0;
     position: sticky;
-    top: 0;
+    top: ${({ isVisible, open }) => !open ? (isVisible ? "0" : "-100px") : "0"};
     z-index: 2;
     background-color: #fff;
 
-    transition: min-height 0.6s ease;
+    transition: min-height 0.6s ease, top 0.3s ease;
     min-height: ${({ open }) => (open ? "100vh" : "4rem")};
 
     @media (min-width: 768px) {
@@ -226,7 +228,8 @@ const MobileMenu = styled.div`
 
     transform: translateY(-8px);
 
-    transition: background-color 0.2s ease-in .1s, border-radius 0.2s ease-in .1s;
+    transition: background-color 0.2s ease-in 0.1s,
+        border-radius 0.2s ease-in 0.1s;
 
     :hover {
         background-color: #f2ac30;
