@@ -4,7 +4,7 @@ import { debounce } from "debounce"
 export const useOnScroll = ({ open }) => {
     const [isVisible, setIsVisible] = useState(true)
     // Keep and change the previous scroll position in a ref because it's mutable.
-    const prevScrollpos = useRef(window.pageYOffset)
+    const prevScrollpos = useRef(0)
 
     useEffect(() => {
         if (!open) {
