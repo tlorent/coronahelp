@@ -7,8 +7,9 @@ import Businesses from "../components/businesses"
 import Section from "../components/section"
 import { Helmet } from "react-helmet"
 import ConferenceSvg from "../components/svg/Conference"
+import { FormattedMessage } from "gatsby-plugin-intl"
 
-export default ({ data }) => {
+const Index = ({ data }) => {
     return (
         <Layout>
             <Helmet>
@@ -22,14 +23,17 @@ export default ({ data }) => {
             <Introduction>
                 <Container>
                     <Text>
-                        Deze website is voor restaurants, lokale producenten,
+                        <FormattedMessage
+                            defaultMessage="Deze website is voor restaurants, lokale producenten,
                         artiesten, bioscopen, theaters, hotels. Kortom, alle
-                        ondernemingen en bedrijven die onze hulp nodig hebben.
+                        ondernemingen en bedrijven die onze hulp nodig hebben."
+                            id="intro"
+                        />
                         <br />
                         <br />
-                        Heb jij of ken jij een restaurant of filmtheater die
+                        <FormattedMessage defaultMessage="Heb jij of ken jij een restaurant of filmtheater die
                         steun nodig heeft? Of heb je een favoriet café dat uit
-                        de brand geholpen moet worden?
+                        de brand geholpen moet worden?" id="help" />
                         <br />
                         <Button>
                             <a
@@ -37,7 +41,7 @@ export default ({ data }) => {
                                 rel="noopener noreferrer"
                                 href="https://docs.google.com/forms/d/e/1FAIpQLSfGtCtLGVmxEA_FyMWESmDseFl4nRS56_-58rNrNKGAat3TZw/viewform"
                             >
-                                <span>Geef een onderneming op!</span>
+                                <FormattedMessage defaultMessage="Geef een onderneming op!" id="cta" />
                             </a>{" "}
                         </Button>
                     </Text>
@@ -51,6 +55,8 @@ export default ({ data }) => {
         </Layout>
     )
 }
+
+export default Index
 
 const Container = styled.div`
     display: flex;
@@ -103,8 +109,11 @@ export const query = graphql`
                         title
                         url
                         descriptionNL
+                        descriptionEN
                         locationNL
+                        locationEN
                         categoryNL
+                        categoryEN
                     }
                 }
             }

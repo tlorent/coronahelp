@@ -1,19 +1,13 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import { Link } from "gatsby"
 import { Link as ScrollLink, animateScroll as scroll } from "react-scroll"
 import logo from "../static/images/logo.png"
+import { IntlContextConsumer, changeLocale, FormattedMessage } from "gatsby-plugin-intl"
 
-const ListLink = ({ to, children }) => (
-    <li>
-        <StyledLink
-            to={to}
-            activeStyle={{ color: "#000", borderBottom: "1px solid #000" }}
-        >
-            {children}
-        </StyledLink>
-    </li>
-)
+const languageName = {
+    en: "EN",
+    nl: "NL",
+}
 
 const ScrollToLink = ({ to, children }) => {
     const [isActive, setIsActive] = useState(false)
@@ -36,7 +30,7 @@ const ScrollToLink = ({ to, children }) => {
     )
 }
 
-export default ({ inEnglish }) => {
+export default () => {
     const [open, setOpen] = useState(false)
 
     return (
@@ -50,12 +44,25 @@ export default ({ inEnglish }) => {
                 <Items>
                     <NavItems open={open}>
                         <ScrollToLink to="businesses">
-                            {inEnglish ? "Businesses" : "Ondernemingen"}
+                            <FormattedMessage defaultMessage="Ondernemingen" id="businesses" />
                         </ScrollToLink>
                         <Languages open={open}>
-                            <ListLink to="/">NL</ListLink>
-                            {" - "}
-                            <ListLink to="/en">EN</ListLink>
+                            <IntlContextConsumer>
+                                {({ languages, language: currentLocale }) =>
+                                    languages.map(language => (
+                                        <StyledLink
+                                            currentLocale={currentLocale}
+                                            language={language}
+                                            key={language}
+                                            onClick={() =>
+                                                changeLocale(language)
+                                            }
+                                        >
+                                            {languageName[language]}
+                                        </StyledLink>
+                                    ))
+                                }
+                            </IntlContextConsumer>
                         </Languages>
                     </NavItems>
 
@@ -125,15 +132,41 @@ const NavItems = styled.ul`
     `}
 `
 
-const StyledLink = styled(Link)`
+const StyledLink = styled.a`
     background-image: none;
     color: #f2ac30;
     transition: color 0.3s ease;
-    margin: 0 0.3rem;
+    margin: 0;
+    position: relative;
+
+    :first-of-type {
+        margin-right: 1rem;
+
+        :after {
+            content: "";
+            display: block;
+            border: 1px solid #000;
+            width: 13px;
+            position: absolute;
+            bottom: 50%;
+            right: -50%;
+        }
+    }
+
+    :nth-of-type(2) {
+        margin-left: 0.6rem;
+    }
 
     :hover {
         color: #000;
     }
+
+    ${({ currentLocale, language }) =>
+        currentLocale === language &&
+        `
+        color: #000;
+        border-bottom: 1px solid #000;
+    `}
 `
 
 const StyledScrollLink = styled(ScrollLink)`
@@ -226,7 +259,8 @@ const MobileMenu = styled.div`
 
     transform: translateY(-8px);
 
-    transition: background-color 0.2s ease-in .1s, border-radius 0.2s ease-in .1s;
+    transition: background-color 0.2s ease-in 0.1s,
+        border-radius 0.2s ease-in 0.1s;
 
     :hover {
         background-color: #f2ac30;

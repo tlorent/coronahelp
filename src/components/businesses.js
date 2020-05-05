@@ -3,43 +3,65 @@ import styled from "styled-components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons"
 import Title from "../components/title"
+import { FormattedMessage, useIntl } from "gatsby-plugin-intl"
 
-export default ({ inEnglish, data }) => (
-    <>
-        <Title>{inEnglish ? "Businesses" : "Ondernemingen"}</Title>
-        <Text>
-            <span>
-                {data.allMarkdownRemark.totalCount}{" "}
-                {inEnglish ? "businesses" : "ondernemingen"}
-            </span>
-        </Text>
-        <BusinessGrid>
-            {data.allMarkdownRemark.edges.map(({ node }) => (
-                <>
-                    <Business key={node.id}>
-                        <BusinessName>
-                            <BusinessLink href={node.frontmatter.url} rel="noreferrer" target="_blank">
-                                {node.frontmatter.title}
-                            </BusinessLink>
-                        </BusinessName>
-                        <Location>
-                            <FontAwesomeIcon icon={faMapMarkerAlt} />{" "}
-                            {inEnglish ? node.frontmatter.locationEN : node.frontmatter.locationNL} |{" "}
-                            {inEnglish
-                                ? node.frontmatter.categoryEN
-                                : node.frontmatter.categoryNL}
-                        </Location>
-                        <Text>
-                            {inEnglish
-                                ? node.frontmatter.descriptionEN
-                                : node.frontmatter.descriptionNL}
-                        </Text>
-                    </Business>
-                </>
-            ))}
-        </BusinessGrid>
-    </>
-)
+const Businesses = ({ data }) => {
+    const { locale } = useIntl()
+
+    return (
+        <>
+            <Title>
+                <FormattedMessage
+                    defaultMessage="Ondernemingen"
+                    id="businesses"
+                />
+            </Title>
+            <Text>
+                <span>
+                    {data.allMarkdownRemark.totalCount}{" "}
+                    <FormattedMessage
+                        defaultMessage="Ondernemingen"
+                        id="businesses"
+                    />
+                </span>
+            </Text>
+            <BusinessGrid>
+                {data.allMarkdownRemark.edges.map(({ node }) => (
+                    <>
+                        <Business key={node.id}>
+                            <BusinessName>
+                                <BusinessLink
+                                    href={node.frontmatter.url}
+                                    rel="noreferrer"
+                                    target="_blank"
+                                >
+                                    {node.frontmatter.title}
+                                </BusinessLink>
+                            </BusinessName>
+                            <Location>
+                                <FontAwesomeIcon icon={faMapMarkerAlt} />{" "}
+                                {locale === "en"
+                                    ? node.frontmatter.locationEN
+                                    : node.frontmatter.locationNL}{" "}
+                                |{" "}
+                                {locale === "en"
+                                    ? node.frontmatter.categoryEN
+                                    : node.frontmatter.categoryNL}
+                            </Location>
+                            <Text>
+                                {locale === "en"
+                                    ? node.frontmatter.descriptionEN
+                                    : node.frontmatter.descriptionNL}
+                            </Text>
+                        </Business>
+                    </>
+                ))}
+            </BusinessGrid>
+        </>
+    )
+}
+
+export default Businesses
 
 const BusinessGrid = styled.div`
     display: grid;

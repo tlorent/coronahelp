@@ -15,7 +15,7 @@ module.exports = {
             resolve: `gatsby-plugin-google-analytics`,
             options: {
                 trackingId: "UA-162115873-1",
-                head: true
+                head: true,
             },
         },
         {
@@ -41,10 +41,14 @@ module.exports = {
             },
         },
         {
-            resolve: "gatsby-plugin-i18n",
+            resolve: `gatsby-plugin-intl`,
             options: {
-                langKeyDefault: "nl",
-                useLangKeyLayout: false,
+                // language JSON resource path
+                path: `${__dirname}/src/intl`,
+                // supported languages
+                languages: [`nl`, `en`],
+                // language file path
+                defaultLanguage: `nl`,
             },
         },
     ],
